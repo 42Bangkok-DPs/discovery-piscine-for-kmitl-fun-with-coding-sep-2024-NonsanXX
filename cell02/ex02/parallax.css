@@ -1,0 +1,56 @@
+/* General body styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    width: 700px;
+    height: 200px;
+    text-align: center;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.3)
+}
+p {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.parallax-section {
+    position: relative;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax1 {
+    background-image: url('https://i.pinimg.com/736x/2b/6b/1e/2b6b1e6bc877a5a74f48b303bc971897.jpg');
+}
+
+.parallax2 {
+    background-image: url('https://i.pinimg.com/564x/4f/ab/0b/4fab0b2570b478cad4d05420a7170216.jpg');
+}
+
+.black-section {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    font-size: 1.5em;
+}
+
+.centered-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+}
