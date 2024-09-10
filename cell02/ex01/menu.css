@@ -1,0 +1,22 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
+.background {
+    background-image: url(https://cdn.sortiraparis.com/images/80/95758/811937-metro-train-sncf-visuel-actualites.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.blur {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    height: 100vh;
+	width: 100%;
+}
