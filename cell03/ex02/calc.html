@@ -92,15 +92,12 @@
                 console.log(event);
                 operation = event.target.dataset.op;
 
-                // Remove 'selected' class from previously selected button
                 if (selectedButton) {
                     selectedButton.classList.remove('selected');
                 }
 
-                // Add 'selected' class to newly clicked button
                 event.target.classList.add('selected');
 
-                // Update selectedButton
                 selectedButton = event.target;
             }
         });
@@ -114,12 +111,15 @@
                 alert("Error :(");
             } else if (operation in operations) {
                 const result = operations[operation](num1, num2);
-                console.log(`Result: ${result}`);
-                alert(`Result: ${result}`);
+                console.log(result);
+                alert(result);
             } else {
                 alert("Please select an operation.");
             }
         });
+        setInterval(() => {
+		    alert("Please, use me...");
+	    }, 30000);
     </script>
 </body>
 </html>
