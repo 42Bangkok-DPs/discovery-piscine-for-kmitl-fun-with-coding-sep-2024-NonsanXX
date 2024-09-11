@@ -6,14 +6,17 @@
     <title>Change Background</title>
     <link rel="stylesheet" href="backgroound.css">
 </head>
-
-<body>
-    <button onclick="randomBG()">CLICK ME!</button>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-    let randomBG = () => {
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        document.body.style.backgroundColor = "#" + randomColor;
-    }
+    $(document).ready(function(){
+        $("button").click(function(){
+            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            $("body").css("background-color", "#" + randomColor);
+        });
+    });
 </script>
+<body>
+    <button>CLICK ME!</button>
+</body>
+
 </html>

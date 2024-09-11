@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,50 +77,49 @@
         </div>
     </div>
     <script>
-        let operation = "";
-        let selectedButton = null;
+        $(document).ready(function() {
+            let operation = "";
+            let $selectedButton = null;
 
-        const operations = {
-            add: (a, b) => a + b,
-            subtract: (a, b) => a - b,
-            multiply: (a, b) => a * b,
-            divide: (a, b) => b !== 0 ? a / b : "It’s over 9000!",
-            modulo: (a, b) => b !== 0 ? a % b : "It’s over 9000!"
-        };
+            const operations = {
+                add: (a, b) => a + b,
+                subtract: (a, b) => a - b,
+                multiply: (a, b) => a * b,
+                divide: (a, b) => b !== 0 ? a / b : "It's over 9000!",
+                modulo: (a, b) => b !== 0 ? a % b : "It's over 9000!"
+            };
 
-        document.querySelector('.buttons').addEventListener('click', (event) => {
-            if (event.target.dataset.op) {
-                console.log(event);
-                operation = event.target.dataset.op;
+            $('.buttons').on('click', 'button[data-op]', function() {
+                operation = $(this).data('op');
 
-                if (selectedButton) {
-                    selectedButton.classList.remove('selected');
+                if ($selectedButton) {
+                    $selectedButton.removeClass('selected');
                 }
 
-                event.target.classList.add('selected');
+                $(this).addClass('selected');
+                $selectedButton = $(this);
+            });
 
-                selectedButton = event.target;
-            }
+            $('#submit').on('click', function() {
+                const num1 = parseFloat($('#left').val());
+                const num2 = parseFloat($('#right').val());
+
+                if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
+                    console.log("Error ;()");
+                    alert("Error :(");
+                } else if (operation in operations) {
+                    const result = operations[operation](num1, num2);
+                    console.log(result);
+                    alert(result);
+                } else {
+                    alert("Please select an operation.");
+                }
+            });
+
+            setInterval(function() {
+                alert("Please, use me...");
+            }, 30000);
         });
-
-        document.getElementById('submit').addEventListener('click', () => {
-            const num1 = parseFloat(document.getElementById("left").value);
-            const num2 = parseFloat(document.getElementById("right").value);
-
-            if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
-                console.log("Error ;()");
-                alert("Error :(");
-            } else if (operation in operations) {
-                const result = operations[operation](num1, num2);
-                console.log(result);
-                alert(result);
-            } else {
-                alert("Please select an operation.");
-            }
-        });
-        setInterval(() => {
-		    alert("Please, use me...");
-	    }, 30000);
     </script>
 </body>
 </html>

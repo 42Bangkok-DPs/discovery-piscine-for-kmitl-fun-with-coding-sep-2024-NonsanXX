@@ -4,56 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balloon</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #balloon {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background-color: red;
+            transition: all 0.3s ease;
+        }
+        #balloon:hover {
+            cursor: pointer;
+        }
+    </style>
 </head>
-<style>
-#balloon{
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    background-color: red;
-    transition: all 0.3s ease;
-}
-</style>
 <body>
-    <div id="balloon">
-    </div>
+    <div id="balloon"></div>
     <script>
-        const colors = ['red', 'green', 'blue'];
-        let colorIndex = 0;
-        let ball = document.getElementById("balloon");
+        $(document).ready(function() {
+            const colors = ['red', 'green', 'blue'];
+            let colorIndex = 0;
+            const $balloon = $('#balloon');
 
-        let grow = () => {
-            let currentSize = ball.offsetWidth;
-            let newSize = currentSize + 10;
-            ball.style.width = newSize + "px";
-            ball.style.height = newSize + "px";
-            ball.style.borderRadius = (newSize / 2) + "px";
+            function grow() {
+                let currentSize = $balloon.width();
+                let newSize = currentSize + 10;
+                $balloon.css({
+                    width: newSize,
+                    height: newSize,
+                    borderRadius: newSize / 2
+                });
 
-            colorIndex = (colorIndex + 1) % colors.length;
-            ball.style.backgroundColor = colors[colorIndex];
+                colorIndex = (colorIndex + 1) % colors.length;
+                $balloon.css('backgroundColor', colors[colorIndex]);
 
-            if (newSize > 420) {
-                resetBalloon();
+                if (newSize > 420) {
+                    resetBalloon();
+                }
             }
-        }
-        let shrink = () => {
-            let ball = document.getElementById("balloon");
-            let currentSize = ball.offsetWidth;
-            let newSize = Math.max(currentSize - 5, 200);
-            ball.style.width = newSize + "px";
-            ball.style.height = newSize + "px";
 
-            colorIndex = (colorIndex - 1 + colors.length) % colors.length;
-            balloon.style.backgroundColor = colors[colorIndex];
-        }
-        let resetBalloon = () => {
-            balloon.style.width = "200px";
-            balloon.style.height = "200px";
-            balloon.style.backgroundColor = 'red';
-            colorIndex = 0;
-        }
-        balloon.addEventListener('click', grow);
-        balloon.addEventListener('mouseleave', shrink);
+            function shrink() {
+                let currentSize = $balloon.width();
+                let newSize = Math.max(currentSize - 5, 200);
+                $balloon.css({
+                    width: newSize,
+                    height: newSize
+                });
+
+                colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+                $balloon.css('backgroundColor', colors[colorIndex]);
+            }
+
+            function resetBalloon() {
+                $balloon.css({
+                    width: 200,
+                    height: 200,
+                    backgroundColor: 'red'
+                });
+                colorIndex = 0;
+            }
+
+            $balloon.on('click', grow);
+            $balloon.on('mouseleave', shrink);
+        });
     </script>
 </body>
 </html>

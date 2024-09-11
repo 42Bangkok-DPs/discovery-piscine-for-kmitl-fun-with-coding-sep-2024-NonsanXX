@@ -11,4 +11,10 @@ button {
     min-width: 300px;
     min-height: 100px;
     box-shadow: 5px 5px rgba(0,0,0,0.5);
+    transition: background-color 0.3s, transform 0.2s;
+}
+button:hover{
+    background-color: rgb(208, 208, 208);
+    cursor: pointer;
+    transform: scale(1.02);
 }

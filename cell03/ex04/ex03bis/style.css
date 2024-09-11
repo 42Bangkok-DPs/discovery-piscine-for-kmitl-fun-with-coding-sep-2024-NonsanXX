@@ -53,4 +53,6 @@ button:hover {
 .task-item:hover {
     background-color: rgb(255, 202, 202);
     transform: scale(1.02);
+    text-decoration: line-through;
+    text-decoration-thickness: auto;
 }
