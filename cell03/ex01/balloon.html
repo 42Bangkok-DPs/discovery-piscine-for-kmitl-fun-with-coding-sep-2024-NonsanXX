@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon</title>
+</head>
+<style>
+#balloon{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-color: red;
+    transition: all 0.3s ease;
+}
+</style>
+<body>
+    <div id="balloon">
+    </div>
+    <script>
+        const colors = ['red', 'green', 'blue'];
+        let colorIndex = 0;
+        let ball = document.getElementById("balloon");
+
+        let grow = () => {
+            let currentSize = ball.offsetWidth;
+            let newSize = currentSize + 10;
+            ball.style.width = newSize + "px";
+            ball.style.height = newSize + "px";
+            ball.style.borderRadius = (newSize / 2) + "px";
+
+            colorIndex = (colorIndex + 1) % colors.length;
+            ball.style.backgroundColor = colors[colorIndex];
+
+            if (newSize > 420) {
+                resetBalloon();
+            }
+        }
+        let shrink = () => {
+            let ball = document.getElementById("balloon");
+            let currentSize = ball.offsetWidth;
+            let newSize = Math.max(currentSize - 5, 200);
+            ball.style.width = newSize + "px";
+            ball.style.height = newSize + "px";
+
+            colorIndex = (colorIndex - 1 + colors.length) % colors.length;
+            balloon.style.backgroundColor = colors[colorIndex];
+        }
+        let resetBalloon = () => {
+            balloon.style.width = "200px";
+            balloon.style.height = "200px";
+            balloon.style.backgroundColor = 'red';
+            colorIndex = 0;
+        }
+        balloon.addEventListener('click', grow);
+        balloon.addEventListener('mouseleave', shrink);
+    </script>
+</body>
+</html>
