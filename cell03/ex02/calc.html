@@ -4,8 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .numinput {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button.selected {
+            background-color: #28a745;
+        }
+        #submit {
+            grid-column: span 3;
+            background-color: #28a745;
+        }
+        #submit:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="numinput">
+            <input type="text" id="left" placeholder="Number 1">
+            <input type="text" id="right" placeholder="Number 2">
+        </div>
+        <div class="buttons">
+            <button data-op="add">+</button>
+            <button data-op="subtract">-</button>
+            <button data-op="multiply">*</button>
+            <button data-op="divide">/</button>
+            <button data-op="modulo">%</button>
+            <button id="submit">Try Me!</button>
+        </div>
+    </div>
+    <script>
+        let operation = "";
+        let selectedButton = null;
+
+        const operations = {
+            add: (a, b) => a + b,
+            subtract: (a, b) => a - b,
+            multiply: (a, b) => a * b,
+            divide: (a, b) => b !== 0 ? a / b : "It’s over 9000!",
+            modulo: (a, b) => b !== 0 ? a % b : "It’s over 9000!"
+        };
+
+        document.querySelector('.buttons').addEventListener('click', (event) => {
+            if (event.target.dataset.op) {
+                console.log(event);
+                operation = event.target.dataset.op;
+
+                // Remove 'selected' class from previously selected button
+                if (selectedButton) {
+                    selectedButton.classList.remove('selected');
+                }
+
+                // Add 'selected' class to newly clicked button
+                event.target.classList.add('selected');
+
+                // Update selectedButton
+                selectedButton = event.target;
+            }
+        });
+
+        document.getElementById('submit').addEventListener('click', () => {
+            const num1 = parseFloat(document.getElementById("left").value);
+            const num2 = parseFloat(document.getElementById("right").value);
+
+            if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
+                console.log("Error ;()");
+                alert("Error :(");
+            } else if (operation in operations) {
+                const result = operations[operation](num1, num2);
+                console.log(`Result: ${result}`);
+                alert(`Result: ${result}`);
+            } else {
+                alert("Please select an operation.");
+            }
+        });
+    </script>
 </body>
 </html>
