@@ -89,7 +89,6 @@
 
         document.querySelector('.buttons').addEventListener('click', (event) => {
             if (event.target.dataset.op) {
-                console.log(event);
                 operation = event.target.dataset.op;
 
                 if (selectedButton) {
@@ -107,7 +106,7 @@
             const num2 = parseFloat(document.getElementById("right").value);
 
             if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
-                console.log("Error ;()");
+                console.log("Error :(");
                 alert("Error :(");
             } else if (operation in operations) {
                 const result = operations[operation](num1, num2);
