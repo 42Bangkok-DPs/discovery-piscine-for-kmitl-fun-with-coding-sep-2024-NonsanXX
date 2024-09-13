@@ -3,16 +3,23 @@ $(document).ready(function() {
         const tasks = $('.task-item').map(function() {
             return $(this).text();
         }).get();
-        document.cookie = `tasks=${JSON.stringify(tasks)}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
+        const tasksJSON = JSON.stringify(tasks);
+        document.cookie = `tasks=${encodeURIComponent(tasksJSON)}; expires=${new Date(Date.now() + 86400000).toUTCString()}; path=/`;
     }
 
     function loadTasks() {
-        const cookie = document.cookie.split('; ').find(row => row.startsWith('tasks='));
-        if (cookie) {
-            const tasks = JSON.parse(cookie.split('=')[1]);
-            $(tasks.slice().reverse()).each(function(index, task) {
-                addTask(task);
-            });
+        const cookieValue = document.cookie.split('; ').find(row => row.startsWith('tasks='));
+        if (cookieValue) {
+            const tasksJSON = decodeURIComponent(cookieValue.split('=')[1]);
+            try {
+                const tasks = JSON.parse(tasksJSON);
+                $('#ft_list').empty();
+                $(tasks.slice().reverse()).each(function(index, task) {
+                    addTask(task);
+                });
+            } catch (e) {
+                console.error("Error parsing tasks from cookie:", e);
+            }
         }
     }
 
@@ -38,5 +45,5 @@ $(document).ready(function() {
         }
     });
 
-    $(window).on('load', loadTasks);
+    loadTasks();
 });

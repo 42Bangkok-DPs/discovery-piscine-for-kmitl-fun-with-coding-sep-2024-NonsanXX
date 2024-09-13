@@ -26,37 +26,32 @@
             gap: 10px;
             margin-bottom: 10px;
         }
-        input {
+        input, select {
             width: 100px;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
+        select {
+            width: 110px;
+            cursor: pointer;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
         }
         button {
             padding: 10px;
             border: none;
-            background-color: #007bff;
+            background-color: #28a745;
             color: white;
             cursor: pointer;
             border-radius: 4px;
             transition: background-color 0.3s;
+            flex-grow: 1;
         }
         button:hover {
-            background-color: #0056b3;
-        }
-        button.selected {
-            background-color: #28a745;
-        }
-        #submit {
-            grid-column: span 3;
-            background-color: #28a745;
-        }
-        #submit:hover {
             background-color: #218838;
         }
     </style>
@@ -67,20 +62,20 @@
             <input type="text" id="left" placeholder="Number 1">
             <input type="text" id="right" placeholder="Number 2">
         </div>
-        <div class="buttons">
-            <button data-op="add">+</button>
-            <button data-op="subtract">-</button>
-            <button data-op="multiply">*</button>
-            <button data-op="divide">/</button>
-            <button data-op="modulo">%</button>
+        <div class="controls">
+            <select id="operation">
+                <option value="">Select operation</option>
+                <option value="add">+</option>
+                <option value="subtract">-</option>
+                <option value="multiply">*</option>
+                <option value="divide">/</option>
+                <option value="modulo">%</option>
+            </select>
             <button id="submit">Try Me!</button>
         </div>
     </div>
     <script>
         $(document).ready(function() {
-            let operation = "";
-            let $selectedButton = null;
-
             const operations = {
                 add: (a, b) => a + b,
                 subtract: (a, b) => a - b,
@@ -89,23 +84,13 @@
                 modulo: (a, b) => b !== 0 ? a % b : "It's over 9000!"
             };
 
-            $('.buttons').on('click', 'button[data-op]', function() {
-                operation = $(this).data('op');
-
-                if ($selectedButton) {
-                    $selectedButton.removeClass('selected');
-                }
-
-                $(this).addClass('selected');
-                $selectedButton = $(this);
-            });
-
             $('#submit').on('click', function() {
                 const num1 = parseFloat($('#left').val());
                 const num2 = parseFloat($('#right').val());
+                const operation = $('#operation').val();
 
                 if (isNaN(num1) || isNaN(num2) || num1 < 0 || num2 < 0) {
-                    console.log("Error :()");
+                    console.log("Error :(");
                     alert("Error :(");
                 } else if (operation in operations) {
                     const result = operations[operation](num1, num2);
