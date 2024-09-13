@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>XCN Portfolio</title>
+	<link rel="stylesheet" href="../assets/nate/styles.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Navigate UWU -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="../index.html">Portfolio</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#about">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#showcase">Showcase</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#contact">Contact</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../">Go back</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section id="about" class="section bg-light text-center">
+		<div class="container">
+			<h1 class="section-title">About Me</h1>
+			<div class="row">
+				<div class="col-md-4">
+					<img src="../assets/nate/nate.png" alt="Profile Image" class="rounded-circle" width="200">
+				</div>
+				<div class="col-md-8">
+					<h2>Patboonr (Nate)</h2>
+					<p>I'm passionate about exploring new technologies, reverse engineering, and playing Capture the Flag. I also enjoy programming and have a strong interest in cyber security and software engineering.</p>
+					<p>KMITL CS30 Student^^</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<div id="showcase" class="section text-center">
+		<div class="container">
+		  <h2 class="section-title">Showcase</h2>
+		  
+		  <div class="row">
+			<div class="col-md-4">
+			  <h3>Skills</h3>
+			  <ul class="skills-list">
+				<li><img src="../assets/nate/c.png" alt="C Icon"> C</li>
+				<li><img src="../assets/nate/cpp.png" alt="C++ Icon"> C++</li>
+				<li><img src="../assets/nate/js.png" alt="JavaScript Icon"> JavaScript</li>
+				<li><img src="../assets/nate/lua.png" alt="Lua Icon"> Lua</li>
+				<li><img src="../assets/nate/python.png" alt="Python Icon"> Python</li>
+				<li><img src="../assets/nate/php.png" alt="PHP Icon"> PHP</li>
+			  </ul>
+			</div>
+			
+			<div class="col-md-8">
+			  <h3>Projects</h3>
+			  <div class="row">
+				<div class="col-md-6 mb-4">
+				  <div class="card" data-href="https://medium.com/@netorika">
+					<img src="../assets/nate/project1.jpg" class="card-img-top" alt="CTF WriteUp">
+					<div class="card-body">
+					  <h5 class="card-title">CTF WriteUp</h5>
+					  <p class="card-text">How to solve Capture The Flag (CTF) challenges from basic to world-class levels</p>
+					</div>
+				  </div>
+				</div>
+				<div class="col-md-6 mb-4">
+				  <div class="card" data-href="https://github.com/XCNXD/Basic-Predicting-AutoPlay-Algorithm">
+					<img src="../assets/nate/project2.jpg" class="card-img-top" alt="Project 2">
+					<div class="card-body">
+					  <h5 class="card-title">Basic Predicting AutoPlay Algorithm</h5>
+					  <p class="card-text">A challenging puzzle game that teaches cryptography concepts through interactive levels and engaging storylines.</p>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+	
+	<section id="contact" class="section bg-light text-center">
+		<div class="container">
+			<h1 class="section-title">Contact Me</h1>
+			<p>Feel free to connect me on social media:</p>
+			<div class="social-links">
+				<a href="https://facebook.com/natelnwza007" target="_blank">Facebook: Xcn Nate</a><br>
+				<a href="https://github.com/XCNXD" target="_blank">GitHub: XCNXD</a><br>
+				<a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">Discord: Natsuiro_XCN</a>
+			</div>
+		</div>
+	</section>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		const clickableCards = document.querySelectorAll('.card');
+		
+		clickableCards.forEach(card => {
+			card.addEventListener('click', function() {
+			const href = this.getAttribute('data-href');
+			if (href) {
+				window.open(href, '_blank');
+			}
+			});
+
+			card.style.cursor = 'pointer';
+		});
+		});
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
